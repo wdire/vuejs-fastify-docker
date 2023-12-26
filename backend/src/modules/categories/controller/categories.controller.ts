@@ -77,7 +77,34 @@ const CategoriesController = (() => {
 
     GET_ALL: async (_, reply: FastifyReply) => {
       try {
-        const categories = await prisma.categories.findMany();
+        const categories = await prisma.categories.findMany({
+          where: {
+            parent: null,
+          },
+          include: {
+            children: {
+              include: {
+                children: {
+                  include: {
+                    children: {
+                      include: {
+                        children: {
+                          include: {
+                            children: {
+                              include: {
+                                children: true,
+                              },
+                            },
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        });
 
         reply.status(200).send({ data: categories });
       } catch (e) {

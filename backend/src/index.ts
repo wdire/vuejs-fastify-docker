@@ -17,7 +17,7 @@ const port = Number(process.env.API_PORT) || 5000;
 const startServer = async () => {
   try {
     const server = fastify({
-      logger: pino({ level: "info" }),
+      logger: pino({ level: "warn" }),
     });
     server.register(cors);
     server.register(helmet);
