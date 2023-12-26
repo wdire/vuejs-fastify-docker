@@ -6,19 +6,37 @@ import { categorySchema } from "../schema/categories.schema";
 async function categoriesRouter(fastify: FastifyInstance) {
   fastify.route({
     method: "GET",
+    url: "/get-all",
+    handler: CategoriesController.GET_ALL,
+  });
+
+  fastify.route({
+    method: "GET",
     url: "/get/:categoryId",
-    handler: CategoriesController.get,
-    schema: categorySchema.get,
+    handler: CategoriesController.GET,
+    schema: categorySchema.GET,
   });
 
   fastify.route({
     method: "POST",
     url: "/create",
-    handler: CategoriesController.create,
-    schema: categorySchema.create,
+    handler: CategoriesController.CREATE,
+    schema: categorySchema.CREATE,
   });
 
-  return fastify;
+  fastify.route({
+    method: "PATCH",
+    url: "/update/:categoryId",
+    handler: CategoriesController.UPDATE,
+    schema: categorySchema.UPDATE,
+  });
+
+  fastify.route({
+    method: "DELETE",
+    url: "/delete/:categoryId",
+    handler: CategoriesController.DELETE,
+    schema: categorySchema.DELETE,
+  });
 }
 
 export default categoriesRouter;
