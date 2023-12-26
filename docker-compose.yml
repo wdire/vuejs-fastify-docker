@@ -1,0 +1,31 @@
+services:
+  # -Tried mysql image instead of host's database but its not needed for the test
+  #  mysqldb:
+  #    image: mysql:8.0
+  #    container_name: mysqlcontainer
+  #    restart: always
+  #    ports:
+  #      - 3306:3306
+  #    expose:
+  #      - 3306
+  #    volumes:
+  #      - $HOME/database:/var/lib/mysql
+  #    environment:
+  #      MYSQL_DATABASE: vuejs_fastify_docker_db
+  #      MYSQL_ROOT_PASSWORD: 123456789
+  #    networks:
+  #      - internalnet
+  backend:
+    build: ./backend
+    container_name: backend
+    environment:
+      API_PORT: 5500
+      DATABASE_URL: mysql://root:123456789@host.docker.internal:3306/vuejs_fastify_docker_db
+    restart: unless-stopped
+    ports:
+      - "5500:5500"
+    networks:
+      - internalnet
+networks:
+  internalnet:
+    driver: bridge
