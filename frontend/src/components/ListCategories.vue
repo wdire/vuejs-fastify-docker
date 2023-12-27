@@ -12,14 +12,20 @@ watchEffect(async () => {
 </script>
 
 <template>
+  <h1>Categories</h1>
   <div class="category-container">
     <CategoryItem v-for="category in categories" :data="category" :key="category.id" />
+    <div v-if="categories.length == 0">Empty</div>
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
+h1 {
+  margin: 20px 0px 10px 30px;
+}
+
 .category-container {
   max-width: 100%;
-  margin: 30px;
+  margin-left: 30px;
 }
 </style>
