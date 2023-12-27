@@ -1,12 +1,12 @@
 FROM node:20.9.0-alpine
 
-WORKDIR /usr/src/app/backend
+WORKDIR /usr/src/app/frontend
 COPY package.json ./
-COPY prisma ./prisma/
 COPY tsconfig.json ./
-COPY src ./src
+COPY . .
+ENV PORT 5300
 RUN npm install
 RUN npm run build
 
-EXPOSE 5500
-CMD [ "npm", "start" ]
+EXPOSE 5300
+CMD [ "npm", "run", "preview" ]

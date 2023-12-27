@@ -15,6 +15,16 @@ services:
   #      MYSQL_ROOT_PASSWORD: 123456789
   #    networks:
   #      - internalnet
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    restart: unless-stopped
+    environment:
+      PORT: 5300
+    ports:
+      - "5300:5300"
+    networks:
+      - internalnet
   backend:
     build: ./backend
     container_name: backend
