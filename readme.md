@@ -15,7 +15,7 @@ Connection string part names, change the parts you need:
 mysql://[username]:[password]@[host]:[port]/[database_name]
 ```
 
-Env name is `DATABASE_URL` and the location is for local run: In `backend/.env` For Docker run: `./docker-compose.yml`
+Env name is `DATABASE_URL` and for local located at `backend/.env` for Docker located at `./docker-compose.yml`
 
 Note: Keep the `host.docker.internal` value in docker, that way docker can connect the database on host.
 
